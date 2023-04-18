@@ -1,0 +1,64 @@
+<main class="max-w-xl mt-10 mx-auto border py-4 px-5 rounded-lg shadow-md">
+  <div
+    class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 text-center"
+    role="alert"
+    *ngIf="alert"
+  >
+    <span class="font-medium">Error!</span> {{ errorMessage }}
+  </div>
+  <h1 class="text-center uppercase text-gray-700 font-bold text-2xl">
+    Introduce URL to cut
+  </h1>
+  <div class="mt-5 flex items-center">
+    <div class="w-full">
+      <label
+        for="url"
+        class="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
+      >
+        <input
+          type="text"
+          id="url"
+          placeholder="Enter url"
+          class="peer h-7 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+          [(ngModel)]="urlEntered"
+        />
+
+        <span
+          class="absolute left-3 top-3 -translate-y-1/2 text-base text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs"
+        >
+          Enter url
+        </span>
+      </label>
+    </div>
+    <div>
+      <button
+        type="button"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-r-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        (click)="urlToCut()"
+      >
+        Default
+      </button>
+    </div>
+  </div>
+  <div class="w-3/5 mt-5" *ngIf="urlProcessed">
+    <label
+      for="url"
+      class="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
+    >
+      <input
+        type="text"
+        id="url"
+        placeholder="Enter url"
+        class="peer h-7 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+        [(ngModel)]="urlCut"
+      />
+
+      <span
+        class="absolute left-3 top-3 -translate-y-1/2 text-sm text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs"
+      >
+        Result
+      </span>
+    </label>
+  </div>
+  <app-spinner *ngIf="loading"></app-spinner>
+</main>
